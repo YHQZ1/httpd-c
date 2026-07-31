@@ -1,0 +1,15 @@
+# Build artifacts
+build/
+httpd-c
+*.o
+*.out
+
+# Editor/OS junk
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Core dumps
+core
+*.core
