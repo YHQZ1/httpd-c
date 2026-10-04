@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>httpd-c</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 36rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.5; }
+    code { background: #eee; padding: 0.1em 0.35em; border-radius: 3px; }
+    #version { font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #111; color: #eee; }
+      code { background: #333; }
+    }
+  </style>
+</head>
+<body>
+  <h1>httpd-c</h1>
+  <p>A tiny HTTP/1.1 server written in C, served by itself.</p>
+  <p>Running version: <span id="version">…</span></p>
+  <ul>
+    <li><a href="/health"><code>/health</code></a> liveness / readiness</li>
+    <li><a href="/version"><code>/version</code></a> build version</li>
+    <li><a href="/metrics"><code>/metrics</code></a> Prometheus metrics</li>
+  </ul>
+  <script>
+    fetch('/version')
+      .then(r => r.json())
+      .then(v => { document.getElementById('version').textContent = v.version; })
+      .catch(() => { document.getElementById('version').textContent = 'unknown'; });
+  </script>
+</body>
+</html>
